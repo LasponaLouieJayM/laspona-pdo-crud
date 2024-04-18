@@ -47,6 +47,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         $stmt->bindParam(":name", $param_name);
         $stmt->bindParam(":description", $param_description);
         $stmt->bindParam(":retailprice", $param_retailprice);
+        $stmt->bindParam(":id", $param_id);
         
         // Set parameters
         $param_name = $name;
