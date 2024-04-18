@@ -49,8 +49,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
             $param_name = $name;
-            $param_address = $address;
-            $param_salary = $salary;
+            $param_description = $description;
+            $param_retailprice = $retailprice;
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
