@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($input_address)){
         $address_err = "Please enter an address.";     
     } else{
-        $address = $input_address;
+        $description = $input_description;
     }
     
     // Validate salary
