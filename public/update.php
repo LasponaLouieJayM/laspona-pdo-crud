@@ -40,9 +40,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
    }
    // Check input errors before inserting in database
    if(empty($name_err) && empty($description_err) && empty($retailprice_err)){
-    // Prepare an insert statement
-    $sql = "INSERT INTO products (product_name, product_description, product_retail_price) VALUES (:name, :description, :retailprice)";
-
+    // Prepare an update statement
+    $sql = "UPDATE products SET product_name=:name, product_description=:description, product_retail_price=:retailprice WHERE product_id=:id";
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
         $stmt->bindParam(":name", $param_name);
@@ -147,8 +146,8 @@ unset($pdo);
                             <span class="invalid-feedback"><?php echo $name_err;?></span>
                         </div>
                         <div class="form-group">
-                            <label>Address</label>
-                            <textarea name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>"><?php echo $address; ?></textarea>
+                            <label>Description</label>
+                            <textarea name="description" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>"><?php echo $address; ?></textarea>
                             <span class="invalid-feedback"><?php echo $address_err;?></span>
                         </div>
                         <div class="form-group">
