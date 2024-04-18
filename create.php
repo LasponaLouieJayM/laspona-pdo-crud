@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $description = $input_description;
     }
     
-    // Validate salary
+    // Validate retailprice
     $input_retailprice = trim($_POST["retailprice"]);
     if(empty($input_retailprice)){
         $retailprice_err = "Please enter the retail price.";     
