@@ -1,8 +1,8 @@
 <?php
 // Check existence of id parameter before processing further
-if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
+if(isset($_GET["product_id"]) && !empty(trim($_GET["product_id"]))){
     // Include config file
-    require_once "config.php";
+    require_once "../db/config.php";
     
     // Prepare a select statement
     $sql = "SELECT * FROM employees WHERE id = :id";
