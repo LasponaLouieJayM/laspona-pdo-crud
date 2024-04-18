@@ -37,14 +37,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Check input errors before inserting in database
-    if(empty($name_err) && empty($description_err) && empty($salary_err)){
+    if(empty($name_err) && empty($description_err) && empty($retailprice_err)){
         // Prepare an insert statement
         $sql = "INSERT INTO employees (name, address, salary) VALUES (:name, :address, :salary)";
  
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":name", $param_name);
-            $stmt->bindParam(":address", $param_address);
+            $stmt->bindParam(":description", $param_address);
             $stmt->bindParam(":salary", $param_salary);
             
             // Set parameters
