@@ -24,7 +24,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 // Retrieve individual field value
                 $name = $row["product_name"];
                 $description = $row["product_description"];
-                $salary = $row["salary"];
+                $retailprice = $row["product_retail_price"];
             } else{
                 // URL doesn't contain valid id parameter. Redirect to error page
                 header("location: error.php");
