@@ -72,8 +72,8 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         <p><b><?php echo $row["product_name"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Address</label>
-                        <p><b><?php echo $row["address"]; ?></b></p>
+                        <label>Description</label>
+                        <p><b><?php echo $row["product_description"]; ?></b></p>
                     </div>
                     <div class="form-group">
                         <label>Salary</label>
