@@ -38,37 +38,38 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
    } else{
        $retailprice = $input_retailprice;
    }
-    // Check input errors before inserting in database
-    if(empty($name_err) && empty($address_err) && empty($salary_err)){
-        // Prepare an update statement
-        $sql = "UPDATE employees SET name=?, address=?, salary=? WHERE id=?";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssi", $param_name, $param_address, $param_salary, $param_id);
+   // Check input errors before inserting in database
+   if(empty($name_err) && empty($description_err) && empty($retailprice_err)){
+    // Prepare an insert statement
+    $sql = "INSERT INTO products (product_name, product_description, product_retail_price) VALUES (:name, :description, :retailprice)";
+
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":name", $param_name);
+        $stmt->bindParam(":description", $param_description);
+        $stmt->bindParam(":retailprice", $param_retailprice);
+        
+        // Set parameters
+        $param_name = $name;
+        $param_description = $description;
+        $param_retailprice = $retailprice;
             
-            // Set parameters
-            $param_name = $name;
-            $param_address = $address;
-            $param_salary = $salary;
-            $param_id = $id;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Records updated successfully. Redirect to landing page
-                header("location: index.php");
-                exit();
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+          // Attempt to execute the prepared statement
+          if($stmt->execute()){
+            // Records updated successfully. Redirect to landing page
+            header("location: index.php");
+            exit();
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
         }
-         
-        // Close statement
-        mysqli_stmt_close($stmt);
     }
-    
-    // Close connection
-    mysqli_close($link);
+     
+    // Close statement
+    unset($stmt);
+}
+
+// Close connection
+unset($pdo);
 } else{
       // Check existence of id parameter before processing further
       if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
