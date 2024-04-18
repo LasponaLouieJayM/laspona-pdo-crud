@@ -94,7 +94,7 @@ unset($pdo);
                     
                     // Retrieve individual field value
                     $name = $row["product_name"];
-                    $address = $row["address"];
+                    $description = $row["product_description"];
                     $salary = $row["salary"];
                 } else{
                     // URL doesn't contain valid id. Redirect to error page
