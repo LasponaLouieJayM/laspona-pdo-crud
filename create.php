@@ -4,7 +4,7 @@ require_once "config.php";
  
 // Define variables and initialize with empty values
 $name = $description = $retailprice = "";
-$name_err = $description_err = $salary_err = "";
+$name_err = $description_err = $retailprice_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
