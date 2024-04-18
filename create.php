@@ -19,9 +19,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Validate address
-    $input_address = trim($_POST["description"]);
-    if(empty($input_address)){
-        $address_err = "Please enter an address.";     
+    $input_description = trim($_POST["description"]);
+    if(empty($input_description)){
+        $description_err = "Please enter an address.";     
     } else{
         $description = $input_description;
     }
