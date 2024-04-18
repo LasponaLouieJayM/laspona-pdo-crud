@@ -29,16 +29,15 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         $description = $input_description;
     }
     
-    // Validate salary
-    $input_salary = trim($_POST["salary"]);
-    if(empty($input_salary)){
-        $salary_err = "Please enter the salary amount.";     
-    } elseif(!ctype_digit($input_salary)){
-        $salary_err = "Please enter a positive integer value.";
-    } else{
-        $salary = $input_salary;
-    }
-    
+   // Validate retailprice
+   $input_retailprice = trim($_POST["retailprice"]);
+   if(empty($input_retailprice)){
+       $retailprice_err = "Please enter the retail price.";     
+   } elseif(!ctype_digit($input_retailprice)){
+       $salary_err = "Please enter a positive integer value.";
+   } else{
+       $retailprice = $input_retailprice;
+   }
     // Check input errors before inserting in database
     if(empty($name_err) && empty($address_err) && empty($salary_err)){
         // Prepare an update statement
