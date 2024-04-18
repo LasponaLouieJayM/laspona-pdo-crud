@@ -46,8 +46,8 @@
                                     echo "<tr>";
                                         echo "<th>#</th>";
                                         echo "<th>Name</th>";
-                                        echo "<th>Address</th>";
-                                        echo "<th>Salary</th>";
+                                        echo "<th>Description</th>";
+                                        echo "<th>Retail Price</th>";
                                         echo "<th>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
