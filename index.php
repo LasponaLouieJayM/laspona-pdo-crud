@@ -56,7 +56,7 @@
                                     echo "<tr>";
                                         echo "<td>" . $row['product_id'] . "</td>";
                                         echo "<td>" . $row['product_name'] . "</td>";
-                                        echo "<td>" . $row['address'] . "</td>";
+                                        echo "<td>" . $row['product_description'] . "</td>";
                                         echo "<td>" . $row['salary'] . "</td>";
                                         echo "<td>";
                                             echo '<a href="read.php?product_id='. $row['product_id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
