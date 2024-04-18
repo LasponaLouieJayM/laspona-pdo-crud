@@ -52,6 +52,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         $param_name = $name;
         $param_description = $description;
         $param_retailprice = $retailprice;
+        $param_id = $id;
             
           // Attempt to execute the prepared statement
           if($stmt->execute()){
