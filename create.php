@@ -93,7 +93,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <p>Please fill this form and submit to add employee record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Name a Product</label>
                             <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
                             <span class="invalid-feedback"><?php echo $name_err;?></span>
                         </div>
@@ -103,9 +103,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <span class="invalid-feedback"><?php echo $description_err;?></span>
                         </div>
                         <div class="form-group">
-                            <label>Salary</label>
-                            <input type="text" name="salary" class="form-control <?php echo (!empty($salary_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $salary; ?>">
-                            <span class="invalid-feedback"><?php echo $salary_err;?></span>
+                            <label>Retail Price</label>
+                            <input type="text" name="retailprice" class="form-control <?php echo (!empty($retailprice_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $retailprice; ?>">
+                            <span class="invalid-feedback"><?php echo $retailprice_err;?></span>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
