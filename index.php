@@ -55,7 +55,7 @@
                                 while($row = $result->fetch()){
                                     echo "<tr>";
                                         echo "<td>" . $row['product_id'] . "</td>";
-                                        echo "<td>" . $row['name'] . "</td>";
+                                        echo "<td>" . $row['product_name'] . "</td>";
                                         echo "<td>" . $row['address'] . "</td>";
                                         echo "<td>" . $row['salary'] . "</td>";
                                         echo "<td>";
