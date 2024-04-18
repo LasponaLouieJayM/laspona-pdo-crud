@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":name", $param_name);
             $stmt->bindParam(":description", $param_description);
-            $stmt->bindParam(":salary", $param_salary);
+            $stmt->bindParam(":retailprice", $param_retailprice);
             
             // Set parameters
             $param_name = $name;
