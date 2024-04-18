@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Validate salary
-    $input_salary = trim($_POST["salary"]);
+    $input_salary = trim($_POST["retailprice"]);
     if(empty($input_salary)){
         $salary_err = "Please enter the salary amount.";     
     } elseif(!ctype_digit($input_salary)){
