@@ -5,7 +5,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     require_once "db/config.phpconfig.php";
     
     // Prepare a delete statement
-    $sql = "DELETE FROM products WHERE id = :id";
+    $sql = "DELETE FROM products WHERE product_id = :id";
     
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
