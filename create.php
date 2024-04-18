@@ -98,9 +98,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <span class="invalid-feedback"><?php echo $name_err;?></span>
                         </div>
                         <div class="form-group">
-                            <label>Address</label>
-                            <textarea name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>"><?php echo $address; ?></textarea>
-                            <span class="invalid-feedback"><?php echo $address_err;?></span>
+                            <label>Description</label>
+                            <textarea name="description" class="form-control <?php echo (!empty($description_err)) ? 'is-invalid' : ''; ?>"><?php echo $description; ?></textarea>
+                            <span class="invalid-feedback"><?php echo $description_err;?></span>
                         </div>
                         <div class="form-group">
                             <label>Salary</label>
