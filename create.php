@@ -3,7 +3,7 @@
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$product_name = $product_description = $salary = "";
+$product_name = $product_description = $product_retail_price = "";
 $name_err = $address_err = $salary_err = "";
  
 // Processing form data when form is submitted
