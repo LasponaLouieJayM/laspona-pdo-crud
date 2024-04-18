@@ -93,7 +93,7 @@ unset($pdo);
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                     
                     // Retrieve individual field value
-                    $name = $row["name"];
+                    $name = $row["product_name"];
                     $address = $row["address"];
                     $salary = $row["salary"];
                 } else{
