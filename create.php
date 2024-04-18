@@ -29,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate salary
     $input_retailprice = trim($_POST["retailprice"]);
     if(empty($input_retailprice)){
-        $retailprice_err = "Please enter the salary amount.";     
+        $retailprice_err = "Please enter the retail price.";     
     } elseif(!ctype_digit($input_retailprice)){
         $salary_err = "Please enter a positive integer value.";
     } else{
