@@ -75,7 +75,7 @@ unset($pdo);
       // Check existence of id parameter before processing further
       if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         // Get URL parameter
-        $productid =  trim($_GET["id"]);
+        $id =  trim($_GET["id"]);
         
         // Prepare a select statement
         $sql = "SELECT * FROM products WHERE product_id = :id";
