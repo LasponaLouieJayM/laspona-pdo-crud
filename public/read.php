@@ -1,11 +1,11 @@
 <?php
 // Check existence of id parameter before processing further
-if(isset($_GET["product_id"]) && !empty(trim($_GET["product_id"]))){
+if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     // Include config file
     require_once "../db/config.php";
     
     // Prepare a select statement
-    $sql = "SELECT * FROM employees WHERE id = :id";
+    $sql = "SELECT * FROM products WHERE product_id = :id";
     
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
@@ -22,7 +22,7 @@ if(isset($_GET["product_id"]) && !empty(trim($_GET["product_id"]))){
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 
                 // Retrieve individual field value
-                $name = $row["name"];
+                $name = $row["product_name"];
                 $address = $row["address"];
                 $salary = $row["salary"];
             } else{
