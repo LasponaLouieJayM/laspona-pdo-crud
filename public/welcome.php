@@ -52,11 +52,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
                         <h2 class="pull-left">Products Details</h2>
-                        <a href="public/create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Product</a>
+                        <a href="../public/create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Product</a>
                     </div>
                     <?php
                     // Include config file
-                    require_once "db/config.php";
+                    require_once "../db/config.php";
                     
                     // Attempt select query execution
                     $sql = "SELECT * FROM products";
@@ -81,7 +81,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                         echo "<td>" . $row['product_description'] . "</td>";
                                         echo "<td>" . $row['product_retail_price'] . "</td>";
                                         echo "<td>";
-                                            echo '<a href="public/read.php?id='. $row['product_id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                            echo '<a href="../public/read.php?id='. $row['product_id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                             echo '<a href="public/update.php?id='. $row['product_id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
                                             echo '<a href="public/delete.php?id='. $row['product_id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";
