@@ -63,7 +63,7 @@
 </nav>
 <body>
 
-    <div id="productsDisplay" class="card-grid"></div>
+<div id="productsDisplay" class="card-grid"></div>
     <!-- Cart Display Area -->
     <div id="cartContainer"></div>
 
@@ -85,6 +85,10 @@
                                  <button class="btn btn-success" onclick="addToCart(${product.id})">
                                     <i class="fas fa-cart-plus"></i> <!-- Add to Cart icon -->
                                 Add to Cart
+                            </button>
+                            <button class="btn btn-success" href="">
+                                    <i class="fas fa-shopping-bag"></i> <!-- Add to Cart icon -->
+                               Buy
                             </button>
                             </div>
                     </div>

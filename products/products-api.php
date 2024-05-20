@@ -13,7 +13,7 @@ switch ($method) {
         if(isset($_GET['id'])) {
             // Read operation (fetch a single product by ID)
             $id = $_GET['id'];
-            $stmt = $pdo->prepare('SELECT * FROM products WHERE id = ?');
+            $stmt = $pdo->prepare('SELECT * FROM products WHERE product_id = ?');
             $stmt->execute([$id]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             if($result) {
