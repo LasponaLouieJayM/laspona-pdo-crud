@@ -3,8 +3,8 @@
 require_once "../db/config.php";
  
 // Define variables and initialize with empty values
-$name = $description = $retailprice = $quantity = $img ="";
-$name_err = $description_err = $retailprice_err = $quantity_err = $img_err ="";
+$name = $description = $retailprice = $quantity = $image ="";
+$name_err = $description_err = $retailprice_err = $quantity_err = $image_err ="";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -47,28 +47,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       }
 
         // Validate image
-    $input_img = trim($_POST["img"]);
-    if (empty($input_img)) {
-        $img_err = "Please enter the image URL.";
+    $input_image = trim($_POST["image"]);
+    if (empty($input_image)) {
+        $image_err = "Please enter the image URL.";
     } else {
-        $img = $input_img;
+        $image = $input_image;
     }
   
     // Check input errors before inserting in database
     if(empty($name_err) && empty($description_err) && empty($retailprice_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO products (product_name, product_description, product_retail_price, quantity, img) VALUES (:name, :description, :retailprice, :quantity, :img)";
+        $sql = "INSERT INTO products (product_name, product_description, product_retail_price, quantity, image) VALUES (:name, :description, :retailprice, :quantity, :image)";
  
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":name", $param_name);
             $stmt->bindParam(":description", $param_description);
             $stmt->bindParam(":retailprice", $param_retailprice);
+            $stmt->bindParam(":quantity", $param_quantity);
+            $stmt->bindParam(":image", $param_image);
             
             // Set parameters
             $param_name = $name;
             $param_description = $description;
             $param_retailprice = $retailprice;
+            
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
