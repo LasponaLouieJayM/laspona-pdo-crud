@@ -36,6 +36,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $retailprice = $input_retailprice;
     }
     
+      // Validate quantity
+      $input_quantity = trim($_POST["quantity"]);
+      if (empty($input_quantity)) {
+          $quantity_err = "Please enter the quantity.";
+      } elseif (!ctype_digit($input_quantity)) {
+          $quantity_err = "Please enter a positive integer value for quantity.";
+      } else {
+          $quantity = $input_quantity;
+      }
+
+        // Validate image
+    $input_img = trim($_POST["img"]);
+    if (empty($input_img)) {
+        $img_err = "Please enter the image URL.";
+    } else {
+        $img = $input_img;
+    }
+  
     // Check input errors before inserting in database
     if(empty($name_err) && empty($description_err) && empty($retailprice_err)){
         // Prepare an insert statement
