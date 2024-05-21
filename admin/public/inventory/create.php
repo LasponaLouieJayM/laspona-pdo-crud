@@ -71,7 +71,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_name = $name;
             $param_description = $description;
             $param_retailprice = $retailprice;
-            
+            $param_image = $image;
+            $param_quantity = $quantity;
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){

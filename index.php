@@ -87,7 +87,7 @@
                                     <i class="fas fa-cart-plus"></i> <!-- Add to Cart icon -->
                                 Add to Cart
                             </button>
-                            <button class="btn btn-success" href="">
+                            <button class="btn btn-success" href="../products/buycart/paymentacc.php">
                                     <i class="fas fa-shopping-bag"></i> <!-- Add to Cart icon -->
                                Buy
                             </button>
