@@ -3,8 +3,8 @@
 require_once "../db/config.php";
  
 // Define variables and initialize with empty values
-$name = $description = $retailprice = "";
-$name_err = $description_err = $retailprice_err = "";
+$name = $description = $retailprice = $quantity = $img ="";
+$name_err = $description_err = $retailprice_err = $quantity_err = $img_err ="";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $retailprice = $input_retailprice;
     }
-    
+
       // Validate quantity
       $input_quantity = trim($_POST["quantity"]);
       if (empty($input_quantity)) {
@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($name_err) && empty($description_err) && empty($retailprice_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO products (product_name, product_description, product_retail_price) VALUES (:name, :description, :retailprice)";
+        $sql = "INSERT INTO products (product_name, product_description, product_retail_price, quantity, img) VALUES (:name, :description, :retailprice, :quantity, :img)";
  
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
