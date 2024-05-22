@@ -1,6 +1,6 @@
 <?php
 // Include config file
-require_once "../db/config.php";
+require_once "../../db/config.php";
  
 // Define variables and initialize with empty values
 $name = $description = $retailprice = $quantity = $image ="";

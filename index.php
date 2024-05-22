@@ -144,10 +144,3 @@
     </script>
 </body>
 </html>
-<script>
-         function to_payment() {
-$.post("products/buycart/paymentacc.php", {},function (data) {
-      $("#nav_contents").html(data);  
-    });
-}   
-    </script>

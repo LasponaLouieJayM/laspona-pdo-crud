@@ -9,27 +9,101 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Payment & Accounting</h1>
-    <h1></h1>
-    <div class="d-flex">
-        <div class="card m-2" style="width:400px">
-          <div class="card-body">
-            <h4 class="card-title">Small Health Potion</h4>
-          </div>
-          <img class="card-img-top" src="https://i.pinimg.com/236x/53/5d/ac/535dac3fb4e665e2e2b339ae0534f67c.jpg" alt="Card image" style="width:40%">
-        </div>
-        <div class="container mt-3">
-            <h2> </h2>
-            <div class="card">
-             <div class="card-header">Quantity </div>  
-              <div class="card-header">Price </div>
-              <div class="card-body">Shipping Fee </div> 
-              <div class="card-footer">Equivalent Payment </div>
-              <a href="Customerser.html" class="btn btn-primary">Send Message</a>
-              <br>
-              <a href="logistics.html" class="btn btn-primary">Place Your Order</a>
-            </div>
-          </div>
+<div class="container">
+    <form action="">
+        <h1>Payment Address</h1>
+        <p>Required fileds are followed by *</p>
+        <h2>Address Information</h2>
+        <p>First Name: *<input type="text" placeholder="" name="First Name"required></p>
+        <p>Last Name: <input type="text" placeholder="" name="Last Name"></p>
+        <p>Email: * <input type="email" placeholder="" name="email" id="email"required></p>
+        <p>Address: * <input type="email" placeholder="" name="email" id="email"required></p>
+          
+            
+            <p>Phone No:  *<input type="number" placeholder="+1 2409721857" name="number" id="number"required></p>
+
+        <fieldset>
+            <legend> <b>Gender  *</b> </legend>
+             <p> 
+              Male: <input type="radio" name="gender" id="gender"required> Female: <input type="radio" name="gender" id="gender"required>  
+             </p>
+        </fieldset>  
+        <input type="Submit" value="Proceed">
+      </form>
+    </div>
      
 </body>
 </html>
+<style>
+  *{
+    box-sizing: border-box;
+}
+
+h1{
+    text-transform: uppercase;
+    background-color: blueviolet;
+    text-shadow: 5px 3px 4px white;
+    text-align: center;
+    border: 7px solid black;
+    border-radius: 3px;
+    
+    
+}
+
+h2{
+    text-decoration: underline;
+}
+
+body{
+    font-family:Georgia, 'Times New Roman', Times, serif, sans-serif;
+    margin: 15px 30px;
+    font-size: 20px;
+    padding: 8px;
+    
+}
+.container{
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+select,textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    margin: 6px;
+}
+
+select{
+    cursor: pointer;
+}
+
+fieldset{
+    background-color: #fff;
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+
+}
+
+input[type="submit"]{
+    background-color: skyblue;
+    color: rgb(255, 242, 242);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type="submit"]:hover{
+    background-color: rgb(59, 172, 172);
+}
+
+</style>
