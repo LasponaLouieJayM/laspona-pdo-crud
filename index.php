@@ -79,7 +79,7 @@
                     
 
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="${product.img}">
+                        <img class="card-img-top" src="${product.product_image}">
                             <div class="card-body">
                                 <h5 class="card-title">${product.product_name}</h5><br>Price: ₱${product.product_retail_price}<br>
                                 <p class="card-text">${product.product_description}.</p>

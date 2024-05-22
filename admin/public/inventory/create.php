@@ -129,6 +129,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="text" name="retailprice" class="form-control <?php echo (!empty($retailprice_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $retailprice; ?>">
                             <span class="invalid-feedback"><?php echo $retailprice_err;?></span>
                         </div>
+                        <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="text" name="quantity" class="form-control <?php echo (!empty($quantity_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $quantity; ?>">
+                        <span class="invalid-feedback"><?php echo $quantity_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URL</label>
+                        <input type="text" name="img" class="form-control <?php echo (!empty($img_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $img; ?>">
+                        <span class="invalid-feedback"><?php echo $img_err; ?></span>
+                    </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="../public/welcome.php" class="btn btn-secondary ml-2">Cancel</a>
                     </form>
