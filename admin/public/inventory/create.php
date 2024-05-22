@@ -125,6 +125,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <span class="invalid-feedback"><?php echo $description_err;?></span>
                         </div>
                         <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" name="price" class="form-control <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $price; ?>">
+                        <span class="invalid-feedback"><?php echo $price_err; ?></span>
+                    </div>
+                        <div class="form-group">
                             <label>Retail Price</label>
                             <input type="text" name="retailprice" class="form-control <?php echo (!empty($retailprice_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $retailprice; ?>">
                             <span class="invalid-feedback"><?php echo $retailprice_err;?></span>
