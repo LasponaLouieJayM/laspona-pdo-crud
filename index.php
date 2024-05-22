@@ -62,7 +62,9 @@
     </div>
 </nav>
 <body>
+<div id ="nav_contents">
 
+</div>
 <div id="productsDisplay" class="card-grid"></div>
     <!-- Cart Display Area -->
     <div id="cartContainer"></div>
@@ -78,17 +80,16 @@
 
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="${product.img}">
-                        <h1>${product.img}</h1>
                             <div class="card-body">
                                 <h5 class="card-title">${product.product_name}</h5><br>Price: ₱${product.product_retail_price}<br>
                                 <p class="card-text">${product.product_description}.</p>
-                                <p class="card-text"<br>Quantity: ${product.quantity}</p>
+                                <p class="card-text"<br>Quantity: ${product.product_quantity}</p>
                                  <button class="btn btn-success" onclick="addToCart(${product.product_id})">
                                     <i class="fas fa-cart-plus"></i> <!-- Add to Cart icon -->
                                 Add to Cart
                             </button>
-                            <button class="btn btn-success" href="../products/buycart/paymentacc.php">
-                                    <i class="fas fa-shopping-bag"></i> <!-- Add to Cart icon -->
+                            <button class="btn btn-success" onclick="window.location.href='products/buycart/paymentacc.php'">
+                                    <i class="fas fa-shopping-bag"></i> <!-- shopping icon -->
                                Buy
                             </button>
                             </div>
@@ -143,3 +144,10 @@
     </script>
 </body>
 </html>
+<script>
+         function to_payment() {
+$.post("products/buycart/paymentacc.php", {},function (data) {
+      $("#nav_contents").html(data);  
+    });
+}   
+    </script>
