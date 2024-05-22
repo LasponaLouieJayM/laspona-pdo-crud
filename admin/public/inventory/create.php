@@ -3,8 +3,8 @@
 require_once "../../db/config.php";
  
 // Define variables and initialize with empty values
-$name = $description = $retailprice = $quantity = $image ="";
-$name_err = $description_err = $retailprice_err = $quantity_err = $image_err ="";
+$name = $description = $price = $retailprice = $quantity = $image ="";
+$name_err = $description_err = $price = $retailprice_err = $quantity_err = $image_err ="";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $description = $input_description;
     }
-    
+
      // Validate price
      $input_price = trim($_POST["price"]);
      if (empty($input_price)) {
@@ -67,12 +67,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($name_err) && empty($description_err) && empty($retailprice_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO products (product_name, product_description, product_retail_price, product_quantity, product_image) VALUES (:name, :description, :retailprice, :quantity, :image)";
+        $sql = "INSERT INTO products (product_name, product_description, product_price, product_retail_price, product_quantity, product_image) VALUES (:name, :description, :price, :retailprice, :quantity, :image)";
  
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":name", $param_name);
             $stmt->bindParam(":description", $param_description);
+            $stmt->bindParam(":price", $param_price);
             $stmt->bindParam(":retailprice", $param_retailprice);
             $stmt->bindParam(":quantity", $param_quantity);
             $stmt->bindParam(":image", $param_image);
@@ -80,6 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Set parameters
             $param_name = $name;
             $param_description = $description;
+            $param_price = $price;
             $param_retailprice = $retailprice;
             $param_image = $image;
             $param_quantity = $quantity;
@@ -87,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Records created successfully. Redirect to landing page
-                header("location: ../public/welcome.php");
+                header("location: ./user/dashboard.php");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -155,7 +157,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <span class="invalid-feedback"><?php echo $image_err; ?></span>
                     </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="../public/welcome.php" class="btn btn-secondary ml-2">Cancel</a>
+                        <a href="../dashboard.php" class="btn btn-secondary ml-2">Cancel</a>
                     </form>
                 </div>
             </div>        
