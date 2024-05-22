@@ -136,8 +136,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <div class="form-group">
                         <label>Image URL</label>
-                        <input type="text" name="img" class="form-control <?php echo (!empty($img_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $img; ?>">
-                        <span class="invalid-feedback"><?php echo $img_err; ?></span>
+                        <input type="text" name="image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $image; ?>">
+                        <span class="invalid-feedback"><?php echo $image_err; ?></span>
                     </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="../public/welcome.php" class="btn btn-secondary ml-2">Cancel</a>
