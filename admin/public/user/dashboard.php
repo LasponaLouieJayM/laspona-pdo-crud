@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: ../index.php");
+    header("location: ./index.php");
     exit;
 }
 ?>
@@ -42,14 +42,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <a class="nav-link" href="dashboard.php">Dashboard <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="products.php">Products</a>
+        <a class="nav-link" href="./products.php">Products</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
      <!--<a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>-->
-        <a href="../public/user/logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+        <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
     </form>
   </div>
 </nav>
@@ -57,13 +57,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <div class="container-fluid" >
     <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-        <div class="card-header" href="products.php">Products Recorded</div>
+        <div class="card-header" href=".products.php">Products Recorded</div>
         <div class="card-body">
             <h5 class="card-title "></h5>
             
             <?php
             // Include config file
-            require_once "../db/config.php";
+            require_once "../../db/config.php";
             
             // Attempt select query execution
             $sql = "SELECT COUNT(*) AS total_products FROM products";

@@ -36,7 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard.php">Dashboard </a>
+        <a class="nav-link" href="./dashboard.php">Dashboard </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="products.php">Products<span class="sr-only">(current)</span></a>
@@ -46,7 +46,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
      <!--<a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>-->
-        <a href="../public/user/logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+        <a href="../logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
     </form>
   </div>
 </nav>
@@ -62,7 +62,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </div>
                 <?php
                 // Include config file
-                require_once "../db/config.php";
+                require_once "../../db/config.php";
                 
                 // Attempt select query execution
                 $sql = "SELECT * FROM products";
@@ -127,7 +127,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         while ($row = $result->fetch()) {
                             $rowHtml = str_replace(
                                 array('{{id}}', '{{title}}', '{{description}}', '{{price}}', '{{rrp}}', '{{quantity}}', '{{img}}', '{{date_added}}'),
-                                array($row['id'], $row['title'], $row['description'], $row['price'], $row['rrp'], $row['quantity'], $row['img'], $row['date_added']),
+                                array($row['product_id'], $row['product_name'], $row['product_description'], $row['product_price'], $row['product_retail_price'], $row['product_quantity'], $row['product_image'], $row['product_date_added']),
                                 $rowTemplate
                             );
                             $rows .= $rowHtml;
