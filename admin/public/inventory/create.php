@@ -26,6 +26,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $description = $input_description;
     }
     
+     // Validate price
+     $input_price = trim($_POST["price"]);
+     if (empty($input_price)) {
+         $price_err = "Please enter the price.";
+     } elseif (!is_numeric($input_price)) {
+         $price_err = "Please enter a valid price.";
+     } else {
+         $price = $input_price;
+     }
+
     // Validate retailprice
     $input_retailprice = trim($_POST["retailprice"]);
     if(empty($input_retailprice)){
