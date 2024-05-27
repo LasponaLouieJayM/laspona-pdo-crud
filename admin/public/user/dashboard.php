@@ -42,7 +42,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <a class="nav-link" href="dashboard.php">Dashboard <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./products.php">Products</a>
+        <a class="nav-link" href="products.php">Products</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -57,7 +57,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <div class="container-fluid" >
     <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-        <div class="card-header" href=".products.php">Products Recorded</div>
+        <div class="card-header"><a href="products.php">Products Recorded</a></div>
         <div class="card-body">
             <h5 class="card-title "></h5>
             
