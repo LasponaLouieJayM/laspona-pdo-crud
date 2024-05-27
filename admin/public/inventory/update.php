@@ -188,7 +188,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>"/>
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="../products.php" class="btn btn-secondary ml-2">Cancel</a>
+                        <a href="http://localhost/laspona-pdo-crud/admin/public/user/products.php" class="btn btn-secondary ml-2">Cancel</a>
                     </form>
                 </div>
             </div>        

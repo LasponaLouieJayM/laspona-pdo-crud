@@ -134,13 +134,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="text" name="purchase_date_added" class="form-control <?php echo (!empty($purchase_date_added_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $purchase_date_added; ?>">
                             <span class="invalid-feedback"><?php echo $purchase_date_added_err; ?></span>
                         </div>
-                        <div class="form-group">
-                            <label>Payment ID</label>
-                            <input type="text" name="payment_id" class="form-control <?php echo (!empty($payment_id_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $payment_id; ?>">
-                            <span class="invalid-feedback"><?php echo $payment_id_err; ?></span>
-                        </div>
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+
+                        <input type="submit" class="btn btn-primary" onclick="submit()" value="Submit">
+                        <a  class="btn btn-secondary ml-2" onclick="cancel()">Cancel</a>
                     </form>
                 </div>
             </div>        
@@ -148,3 +144,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 </body>
 </html>
+<script>
+function cancel() {
+
+		if (confirm("Are you sure you want to Cancel?")) {
+            location.href = "http://localhost/laspona-pdo-crud/index.php";
+		} else {
+            location.href = "";
+        }
+    }
+
+    function submit() {
+
+if (confirm("Are you Sure You Want to Purchase?")) {
+    location.href = "http://localhost/laspona-pdo-crud/index.php";
+} else {
+    location.href = "";
+}
+}  
+</script>

@@ -17,7 +17,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Records deleted successfully. Redirect to landing page
-            header("location: ../user/products.php");
+            header("location: http://localhost/laspona-pdo-crud/admin/public/user/products.php");
             exit();
         } else{
             echo "Oops! Something went wrong. Please try again later.";
@@ -64,7 +64,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <p>Are you sure you want to delete this product record?</p>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="../public/welcome.php" class="btn btn-secondary ml-2">No</a>
+                                <a href="http://localhost/laspona-pdo-crud/admin/public/user/products.php" class="btn btn-secondary ml-2">No</a>
                             </p>
                         </div>
                     </form>
