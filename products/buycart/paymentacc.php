@@ -1,101 +1,96 @@
+<?php
+// Include config file
+require_once "../config.php";
+ 
+// Define variables and initialize with empty values
+$payment_name = $payment_address = $payment_number = "";
+$payment_name_err = $payment_address_err = $payment_number_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Validate payment name
+    $input_payment_name = trim($_POST["payment_name"]);
+    if(empty($input_payment_name)){
+        $payment_name_err = "Please enter a payment name.";
+    } else{
+        $payment_name = $input_payment_name;
+    }
+    
+    // Validate payment address
+    $input_payment_address = trim($_POST["payment_address"]);
+    if(empty($input_payment_address)){
+        $payment_address_err = "Please enter a payment address.";     
+    } else{
+        $payment_address = $input_payment_address;
+    }
+    
+    // Validate payment number
+    $input_payment_number = trim($_POST["payment_number"]);
+    if(empty($input_payment_number)){
+        $payment_number_err = "Please enter the payment number.";     
+    } elseif(!ctype_digit($input_payment_number)){
+        $payment_number_err = "Please enter a positive integer value.";
+    } else{
+        $payment_number = $input_payment_number;
+    }
+    
+    // Check input errors before inserting in database
+    if(empty($payment_name_err) && empty($payment_address_err) && empty($payment_number_err)){
+        // Prepare an insert statement
+        $sql = "INSERT INTO payment_address (payment_name, payment_address, payment_number) VALUES (:payment_name, :payment_address, :payment_number)";
+ 
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":payment_name", $param_payment_name);
+            $stmt->bindParam(":payment_address", $param_payment_address);
+            $stmt->bindParam(":payment_number", $param_payment_number);
+            
+            // Set parameters
+            $param_payment_name = $payment_name;
+            $param_payment_address = $payment_address;
+            $param_payment_number = $payment_number;
+            
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                // Records created successfully. Redirect to landing page
+                header("location: index.php");
+                exit();
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+         
+        // Close statement
+        unset($stmt);
+    }
+    
+    // Close connection
+    unset($pdo);
+}
+?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Address</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Document</title>
 </head>
 <body>
 <div class="container">
-    <form action="">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <h1>Payment Address</h1>
-        <p>Required fileds are followed by *</p>
+        <p>Required fields are followed by *</p>
         <h2>Address Information</h2>
-        <p>First Name: *<input type="text" placeholder="" name="First Name"required></p>
-        <p>Last Name: <input type="text" placeholder="" name="Last Name"></p>
-        <p>Email: * <input type="email" placeholder="" name="email" id="email"required></p>
-        <p>Address: * <input type="email" placeholder="" name="email" id="email"required></p>
-          
-            
-            <p>Phone No:  *<input type="number" placeholder="+1 2409721857" name="number" id="number"required></p>
-        <input type="Submit" value="Proceed">
-      </form>
-    </div>
-     
+        <p>First Name: *<input type="text" name="payment_name" required></p>
+        <p>Last Name: <input type="text" name="payment_lastname"></p>
+        <p>Email: * <input type="email" name="payment_email" required></p>
+        <p>Address: * <input type="text" name="payment_address" required></p>
+        <p>Phone No:  *<input type="tel" name="payment_phone" required></p>
+        <button type="submit" class="btn btn-primary" onclick="submitFormAndRedirect()">Proceed to Purchase</button>
+    </form>
+</div>
 </body>
 </html>
-<style>
-  *{
-    box-sizing: border-box;
-}
-
-h1{
-    text-transform: uppercase;
-    background-color: gray;
-    text-shadow: 5px 3px 4px black;
-    text-align: center;
-    border-radius: 3px;
-    color: white;
-    
-}
-
-h2{
-    text-decoration: underline;
-}
-
-body{
-    font-family:Georgia, 'Times New Roman', Times, serif, sans-serif;
-    margin: 15px 30px;
-    font-size: 20px;
-    padding: 8px;
-    
-}
-.container{
-    background-color: #f2f2f2;
-    padding: 5px 20px 15px 20px;
-    border: 2px solid lightgray;
-    border-radius: 6px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="password"],
-input[type="date"],
-select,textarea{
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #cfcfcf;
-    border-radius: 4px;
-    margin: 6px;
-}
-
-select{
-    cursor: pointer;
-}
-
-fieldset{
-    background-color: #fff;
-    border: 1px solid #cfcfcf;
-    border-radius: 4px;
-
-}
-
-input[type="submit"]{
-    background-color: gray;
-    color: rgb(black);
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
-
-input[type="submit"]:hover{
-    background-color: rgb(59, 172, 172);
-}
-
-</style>
