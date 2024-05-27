@@ -1,15 +1,16 @@
 <?php
-session_start();
 require_once '../config.php';
 
+// Example: Fetch user_id from a parameter, query string, or any other source
+$user_id = 1; // Replace with your logic to fetch the user ID
 
 $query = "SELECT * FROM purchases 
           INNER JOIN products ON purchases.product_id = products.product_id 
-          INNER JOIN payments ON purchases.payment_id = payments.payment_id 
-          WHERE products.user_id = ?";
+          INNER JOIN payments ON purchases.payment_id = payments.payment_id";
+
 $stmt = $pdo->prepare($query);
-$stmt->execute([$_SESSION['user_id']]);
-$purchases = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute();
+$purchases = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows from the result set
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +51,7 @@ $purchases = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <h1>Purchases</h1>
+    <a href="../productdash.php" class="btn btn-primary mb-3">Go to Product Dashboard</a>
     <table>
         <tr>
             <th>Product Name</th>

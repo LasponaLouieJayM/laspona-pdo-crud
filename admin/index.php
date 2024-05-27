@@ -1,7 +1,8 @@
 <?php
+// Initialize the session
 session_start();
 
-// Check if the user is already logged in, redirect accordingly
+// Check if the user is already logged in, redirect if true
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     if ($_SESSION["role"] == "admin") {
         header("location: ./admin/public/user/dashboard.php");
@@ -11,14 +12,16 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;
 }
 
-// Include config file (adjust the path based on your file structure)
-require_once "./products/config.php";
+// Include config file
+require_once "./db/config.php";
 
+// Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
@@ -74,12 +77,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             }
                             exit;
                         } else{
-                            // Password is not valid
+                            // Display an error message if password is not valid
                             $login_err = "Invalid username or password.";
                         }
                     }
                 } else{
-                    // Username doesn't exist
+                    // Display an error message if username doesn't exist
                     $login_err = "Invalid username or password.";
                 }
             } else{
@@ -97,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     unset($pdo);
 }
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,10 +110,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <style>
         body{ font: 14px sans-serif; }
         .wrapper{ width: 360px; padding: 20px; }
-        .modal-content { /* Adjust modal width if needed */
-            width: 400px;
-            margin: 0 auto;
-        }
     </style>
 </head>
 <body>
@@ -141,30 +140,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <p>Don't have an account? <a href="./public/user/register.php">Sign up now</a>.</p>
         </form>
-
-        <!-- Role Selection Modal -->
-        <div class="modal fade" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="roleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="roleModalLabel">Select Role</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Select how you want to login:</p>
-                        <a href="./admin/public/user/dashboard.php" class="btn btn-primary btn-block">Admin</a>
-                        <a href="./" class="btn btn-primary btn-block">User</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Button to open Role Selection Modal -->
-        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#roleModal">
-            Login as Admin or User
-        </button>
     </div>
 
     <!-- Bootstrap JavaScript libraries -->

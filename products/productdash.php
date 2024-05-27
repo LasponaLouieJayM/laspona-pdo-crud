@@ -50,8 +50,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-danger ml-3" href="../admin/public/user/logout.php" type="submit">Sign Out of Your Account</button>
         </form>
     </div>
 </nav>
@@ -59,7 +58,7 @@
 <div id="cartContainer"></div>
 
 <script>
-    fetch('./products/products-api.php')
+    fetch('../products/products-api.php')
         .then(response => {
             if (!response.ok) {
                 return response.json().then(error => {
@@ -114,8 +113,13 @@
     }
 
     function buyProduct(productId) {
-        window.location.href = `products/buycart/paymentacc.php?product_id=${productId}`;
+        window.location.href = `./buycart/paymentacc.php?product_id=${productId}`;
     }
 </script>
-</body> 
+
+<!-- Bootstrap JavaScript libraries -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
