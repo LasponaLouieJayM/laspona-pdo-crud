@@ -1,51 +1,49 @@
 <?php
+// Initialize the session
 session_start();
 
-// Check if the user is already logged in, redirect accordingly
+// Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    if ($_SESSION["role"] == "admin") {
-        header("location: ./admin/public/user/dashboard.php");
-    } else {
-        header("location: ./");
-    }
+    header("location: http://localhost/laspona-pdo-crud/products/productdash.php");
     exit;
 }
 
-// Include config file (adjust the path based on your file structure)
+// Include config file
 require_once "./products/config.php";
 
+// Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate username
+
+    // Check if username is empty
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
     } else{
         $username = trim($_POST["username"]);
     }
-    
-    // Validate password
+
+    // Check if password is empty
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter your password.";
     } else{
         $password = trim($_POST["password"]);
     }
-    
-    // Check input errors before processing the database query
+
+    // Validate credentials
     if(empty($username_err) && empty($password_err)){
-        try {
-            // Prepare a select statement
-            $sql = "SELECT user_id, user_name, user_password, role FROM users WHERE user_name = :username";
-            $stmt = $pdo->prepare($sql);
-            
+        // Prepare a select statement
+        $sql = "SELECT user_id, user_name, user_password FROM users WHERE user_name = :username";
+
+        if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-            
+
             // Set parameters
-            $param_username = $username;
-            
+            $param_username = trim($_POST["username"]);
+
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Check if username exists, if yes then verify password
@@ -54,45 +52,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $id = $row["user_id"];
                         $username = $row["user_name"];
                         $hashed_password = $row["user_password"];
-                        $role = $row["role"];
-
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
                             session_start();
-                            
+
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["user_id"] = $id;
                             $_SESSION["username"] = $username;
-                            $_SESSION["role"] = $role; // Store role in session
 
-                            // Redirect user based on role
-                            if ($role == "admin") {
-                                header("location: ./admin/public/user/dashboard.php");
-                            } else {
-                                header("location: ./");
-                            }
+                            // Redirect user to welcome page
+                            header("location: http://localhost/laspona-pdo-crud/products/productdash.php");
                             exit;
                         } else{
-                            // Password is not valid
+                            // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
                         }
                     }
                 } else{
-                    // Username doesn't exist
+                    // Username doesn't exist, display a generic error message
                     $login_err = "Invalid username or password.";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
-        } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
-        }
 
-        // Close statement
-        unset($stmt);
+            // Close statement
+            unset($stmt);
+        }
     }
-    
+
     // Close connection
     unset($pdo);
 }
@@ -107,10 +96,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <style>
         body{ font: 14px sans-serif; }
         .wrapper{ width: 360px; padding: 20px; }
-        .modal-content { /* Adjust modal width if needed */
-            width: 400px;
-            margin: 0 auto;
-        }
     </style>
 </head>
 <body>
@@ -124,11 +109,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }        
         ?>
 
-        <!-- Login Form -->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo htmlspecialchars($username); ?>">
+                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group">
@@ -141,35 +125,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <p>Don't have an account? <a href="./public/user/register.php">Sign up now</a>.</p>
         </form>
-
-        <!-- Role Selection Modal -->
-        <div class="modal fade" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="roleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="roleModalLabel">Select Role</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Select how you want to login:</p>
-                        <a href="./admin/public/user/dashboard.php" class="btn btn-primary btn-block">Admin</a>
-                        <a href="./" class="btn btn-primary btn-block">User</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Button to open Role Selection Modal -->
-        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#roleModal">
-            Login as Admin or User
-        </button>
     </div>
-
-    <!-- Bootstrap JavaScript libraries -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

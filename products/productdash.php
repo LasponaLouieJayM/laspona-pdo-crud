@@ -50,7 +50,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-danger ml-3" href="../admin/public/user/logout.php" type="submit">Sign Out of Your Account</button>
+            <a class="btn btn-danger ml-3" href="index.php" type="submit">Sign Out of Your Account</a>
         </form>
     </div>
 </nav>
