@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2024 at 11:20 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: May 27, 2024 at 05:29 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,6 +54,9 @@ CREATE TABLE `products` (
   `product_name` varchar(255) NOT NULL,
   `product_description` varchar(100) NOT NULL,
   `product_retail_price` varchar(255) NOT NULL,
+  `product_price` int(11) NOT NULL,
+  `product_quantity` int(11) NOT NULL,
+  `product_image` varchar(255) NOT NULL,
   `product_date_added` date NOT NULL,
   `product_updated_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -62,8 +65,9 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_thumbnail_link`, `product_name`, `product_description`, `product_retail_price`, `product_date_added`, `product_updated_date`) VALUES
-(2, NULL, 'fooda', 'a fooda', '122', '0000-00-00', NULL);
+INSERT INTO `products` (`product_id`, `product_thumbnail_link`, `product_name`, `product_description`, `product_retail_price`, `product_price`, `product_quantity`, `product_image`, `product_date_added`, `product_updated_date`) VALUES
+(2, NULL, 'Health Potions', 'A Bundle Of Healt Potion', '4500', 5000, 200, 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAsJCQcJCQcJCQkJCwkJCQkJCQsJCwsMCwsLDA0QDBEODQ4MEhkSJRodJR0ZHxwpKRYlNzU2GioyPi0pMBk7IRP/2wBDAQcICAsJCxULCxUsHRkdLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCz/wAARCAC0ATIDASIAAhEB', '0000-00-00', NULL),
+(3, NULL, 'health Potion', 'A potion that gives health', '280', 300, 500, 'https://th.bing.com/th/id/OIP.7PKUWSBItp26Xgzs2KWaOgHaHa?w=161&h=180&c=7&r=0&o=5&pid=1.7', '0000-00-00', NULL);
 
 -- --------------------------------------------------------
 
@@ -84,7 +88,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
 (1, 'admin', '$2y$10$.P/z4IWP8LKn5yZDZNtIuu3prdyFNMkfczkJERfH4O.7/jrPqJbUS', '2024-04-29 16:58:20'),
-(2, 'me', '$2y$10$2Ox3Dm/nZUGcN4ELo.udWOST4oAJWA3vm5SAuy5rvmiELmGFbmg42', '2024-04-29 17:00:39');
+(2, 'me', '$2y$10$2Ox3Dm/nZUGcN4ELo.udWOST4oAJWA3vm5SAuy5rvmiELmGFbmg42', '2024-04-29 17:00:39'),
+(3, 'ad', '$2y$10$jblpzdQV1hWmkwxBiUG60uuJlKTPd/sijFwofXFSsRvoNBvLlLyJa', '2024-05-26 19:37:15');
 
 --
 -- Indexes for dumped tables
@@ -123,13 +128,13 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

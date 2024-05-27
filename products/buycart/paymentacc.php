@@ -21,13 +21,6 @@
           
             
             <p>Phone No:  *<input type="number" placeholder="+1 2409721857" name="number" id="number"required></p>
-
-        <fieldset>
-            <legend> <b>Gender  *</b> </legend>
-             <p> 
-              Male: <input type="radio" name="gender" id="gender"required> Female: <input type="radio" name="gender" id="gender"required>  
-             </p>
-        </fieldset>  
         <input type="Submit" value="Proceed">
       </form>
     </div>
@@ -41,12 +34,11 @@
 
 h1{
     text-transform: uppercase;
-    background-color: blueviolet;
-    text-shadow: 5px 3px 4px white;
+    background-color: gray;
+    text-shadow: 5px 3px 4px black;
     text-align: center;
-    border: 7px solid black;
     border-radius: 3px;
-    
+    color: white;
     
 }
 
@@ -93,8 +85,8 @@ fieldset{
 }
 
 input[type="submit"]{
-    background-color: skyblue;
-    color: rgb(255, 242, 242);
+    background-color: gray;
+    color: rgb(black);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;

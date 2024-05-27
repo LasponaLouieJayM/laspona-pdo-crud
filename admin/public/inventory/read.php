@@ -2,7 +2,7 @@
 // Check existence of id parameter before processing further
 if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     // Include config file
-    require_once "../db/config.php";
+    require_once "../../db/config.php";
     
     // Prepare a select statement
     $sql = "SELECT * FROM products WHERE product_id = :id";
@@ -79,7 +79,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         <label>Retail Price</label>
                         <p><b><?php echo $row["product_retail_price"]; ?></b></p>
                     </div>
-                    <p><a href="../public/welcome.php" class="btn btn-primary">Back</a></p>
+                    <p><a href="http://localhost/laspona-pdo-crud/admin/public/user/products.php" class="btn btn-primary">Back</a></p>
                 </div>
             </div>        
         </div>
